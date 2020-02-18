@@ -4,7 +4,7 @@
 
 <!-- ここにページ毎のコンテンツを書く -->
 <h1>タスク新規作成ページ</h1>
-
+    @if (Auth::check())
     <div class="row">
         <div class="col-6">
             {!! Form::model($task, ['route' => 'tasks.store']) !!}
@@ -24,4 +24,5 @@
             {!! Form::close() !!}
         </div>
     </div>
+    @endif
 @endsection

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Task;
 
+
 class TasksController extends Controller
 {
     /**
@@ -15,12 +16,15 @@ class TasksController extends Controller
      */
     // getでmessages/にアクセスされた場合の「一覧表示処理」
     public function index()
-    {
-        $tasks = Task::orderBy('id', 'desc')->paginate(25);
+    {   
         
+            $tasks = Task::orderBy('id', 'desc')->paginate(25);
+            
          return view('tasks.index', [
             'tasks' => $tasks,
         ]);
+            
+        
     }
 
     /**
@@ -124,6 +128,7 @@ class TasksController extends Controller
     // deleteでmessages/idにアクセスされた場合の「削除処理」
     public function destroy($id)
     {
+        
         $task = Task::find($id);
         $task->delete();
 
