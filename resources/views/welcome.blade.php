@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+       <div class="col-sm-8">
+               
+            </div>
     
         <div class="center jumbotron">
             <div class="text-center">

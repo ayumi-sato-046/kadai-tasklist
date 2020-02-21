@@ -2,7 +2,7 @@
 
 @section('content')
 
-@if (Auth::check())
+@if (\Auth::id() === $task->user_id)
 <!-- ここにページ毎のコンテンツを書く -->
 <h1>id = {{ $task->id }} のタスク詳細ページ</h1>
 

@@ -30,6 +30,5 @@ Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
 // ユーザ機能
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('Task', 'TasksController', ['only' => ['index', 'show']]);
-    Route::resource('Task', 'TasksController', ['only' => ['destroy', 'edit']]);
+    Route::resource('tasks', 'TasksController', ['only' => ['index', 'show']]);
 });

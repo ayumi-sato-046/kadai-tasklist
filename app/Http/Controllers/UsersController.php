@@ -6,16 +6,25 @@ use Illuminate\Http\Request;
 
 use App\User; // 追加
 
-use App\Task;
+
 
 class UsersController extends Controller
 {
-     public function index()
+    public function index()
     {
         $users = User::orderBy('id', 'desc')->paginate(10);
 
-        return view('tasks.index', [
-            'tasks' => $tasks,
+        return view('users.index', [
+            'users' => $users,
+        ]);
+    }
+    
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        return view('users.show', [
+            'user' => $user,
         ]);
     }
 }

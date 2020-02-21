@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
+@if (Auth::check())
 <!-- ここにページ毎のコンテンツを書く -->
 <h1>タスク一覧</h1>
-    @if (Auth::check())
-    
         <table class="table table-striped">
             <thead>
                 <tr>

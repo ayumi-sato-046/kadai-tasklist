@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- ここにページ毎のコンテンツを書く -->
- @if (Auth::check())
+@if (Auth::check())
  <h1>id: {{ $task->id }} のタスク編集ページ</h1>
 
     <div class="row">
