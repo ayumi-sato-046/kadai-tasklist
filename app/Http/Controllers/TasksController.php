@@ -38,6 +38,8 @@ class TasksController extends Controller
         return view('tasks.create', [
             'task' => $task,
         ]);
+        
+         return redirect('/');
     }
 
     /**
