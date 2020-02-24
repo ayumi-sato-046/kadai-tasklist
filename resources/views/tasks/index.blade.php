@@ -14,7 +14,6 @@
                 </tr>
             </thead>
             <tbody>
-              
                 @foreach ($tasks as $task)
                 <tr>
                     <td>{!! link_to_route('tasks.show', $task->id, ['id' => $task->id]) !!}</td>
@@ -22,13 +21,10 @@
                     <td>{{ $task->content }}</td>
                 </tr>
                 @endforeach
-              
             </tbody>
         </table>
-   
     　　　　{{ $tasks->links('pagination::bootstrap-4') }}
-    　　{!! link_to_route('tasks.create', '新規タスクの投稿', [], ['class' => 'btn btn-primary']) !!}
-　　
+    　　      {!! link_to_route('tasks.create', '新規タスクの投稿', [], ['class' => 'btn btn-primary']) !!}
 　　@else
 　　     <div class="center jumbotron">
             <div class="text-center">
