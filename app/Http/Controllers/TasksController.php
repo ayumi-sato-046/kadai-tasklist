@@ -17,13 +17,16 @@ class TasksController extends Controller
     // getでmessages/にアクセスされた場合の「一覧表示処理」
     public function index()
     {   
-            $tasks = Task::orderBy('id', 'desc')->paginate(25);
-            
-             return view('tasks.index', [
-                 'tasks' => $tasks,
-            ]);
-            
-            return redirect('/');
+            $data = [];
+        if (\Auth::check()) {
+                $user = \Auth::user();
+                $tasks = $user->tasks()->orderBy('created_at' , 'desc')->paginate(10);
+                $data = [
+                    'user' => $user,
+                    'tasks' => $tasks,
+                ];
+        }
+        return view('tasks.index', $data );
     }
 
     /**
@@ -77,7 +80,7 @@ class TasksController extends Controller
     {
         $task = \App\Task::find($id);
         
-        if (\Auth::id() === $task->user_id) {
+        if (\Auth::check() == $task->user_id) {
                 $task = Task::find($id);
 
                 return view('tasks.show', [
@@ -129,6 +132,7 @@ class TasksController extends Controller
         ]);
         
         $task = Task::find($id);
+        $task->user_id = $request->user()->id;
         $task->status = $request->status;
         $task->content = $request->content;
         $task->save();

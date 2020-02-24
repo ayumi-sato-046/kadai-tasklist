@@ -29,6 +29,7 @@ Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('sign
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
 // ユーザ機能
-Route::group(['middleware' => ['auth']], function () {
-    Route::resource('tasks', 'TasksController', ['only' => ['index', 'show']]);
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    Route::resource('tasks', 'TasksController', ['only' => ['store', 'destroy']]);
 });

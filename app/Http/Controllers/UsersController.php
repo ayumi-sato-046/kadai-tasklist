@@ -4,27 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User; // 追加
+use App\Task; // 追加
 
 
 
 class UsersController extends Controller
 {
     public function index()
-    {
-        $users = User::orderBy('id', 'desc')->paginate(10);
-
-        return view('users.index', [
-            'users' => $users,
-        ]);
+    {   
+        $data = [];
+        if (\Auth::check()) {
+            $user = \Auth::user();
+            $tasks = $user->tasks()->orderBy('created_at' , 'desc')->paginate(10);
+            
+            $data = [
+                'user' => $user,
+                'tasks' => $tasks,
+            ];
+        }
+             
+            return redirect('/');
+         
     }
-    
-    public function show($id)
-    {
-        $user = User::find($id);
-
-        return view('users.show', [
-            'user' => $user,
-        ]);
-    }
-}
